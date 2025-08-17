@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.tabuleiro { 
+    background-color: rgb(139, 110, 243);
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.disco {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.disco[data-cor="preto"] {
+    background: radial-gradient(circle at top, white, black);
+    border: 1px solid white;
+}
+
+.disco[data-cor="branco"] {
+    background: radial-gradient(circle at top, rgb(0,0,0), rgb(255,255,255));
+    border: 1px solid black;
+}
+
+.disco.selecionado {
+    outline: 3px solid yellow;
+}
+
