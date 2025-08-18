@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -10,12 +10,13 @@ body {
     padding: 2rem;
 }
 
-.tabuleiro { 
-    background-color: rgb(139, 110, 243);
+.tabuleiro {
     display: grid;
-    grid-template-columns: repeat(7, 40px);
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(7, 50px);
     gap: 5px;
     padding: 10px;
+    background-color: rgb(139, 110, 243);
     border-radius: 10px;
 }
 
@@ -32,12 +33,20 @@ body {
     border: 1px solid white;
 }
 
-.disco[data-cor="branco"] {
-    background: radial-gradient(circle at top, rgb(0,0,0), rgb(255,255,255));
-    border: 1px solid black;
+.disco[data-cor="nulo"] {
+    background: transparent;
+    cursor: default;
+    pointer-events: none;
+    border: none;
+}
+
+.disco[data-cor=""] {
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
 .disco.selecionado {
     outline: 3px solid yellow;
 }
-

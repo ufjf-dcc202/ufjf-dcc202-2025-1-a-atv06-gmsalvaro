@@ -1,4 +1,3 @@
-// main.js
 import { getSelecionado, getTabuleiro, selecionado } from "./disco.js";
 import { verificaVitoria } from "./vitoria.js";
 
@@ -7,6 +6,7 @@ eH1.textContent = "Resta Um";
 
 const eTabuleiro = criaTabuleiro();
 document.body.append(eTabuleiro);
+
 atualizaTabuleiro();
 
 function atualizaTabuleiro() {
@@ -15,8 +15,6 @@ function atualizaTabuleiro() {
     for (let i = 0; i < tab.length; i++) {
         const disco = criaDisco(tab[i], i);
         eTabuleiro.append(disco);
-
-        disco.addEventListener("click", clickDisco);
 
         if (getSelecionado() !== null && i === getSelecionado()) {
             disco.classList.add("selecionado");
@@ -28,20 +26,25 @@ function atualizaTabuleiro() {
     }
 }
 
-function clickDisco(evento) {
-    const posicao = Number(evento.target.dataset.posicao);
-    selecionado(posicao);
-    atualizaTabuleiro();
+function clickNoTabuleiro(evento) {
+    const target = evento.target;
+    if (target.dataset.posicao) {
+        const posicao = Number(target.dataset.posicao);
+        selecionado(posicao);
+        atualizaTabuleiro();
+    }
 }
 
 function criaTabuleiro() {
     const div = document.createElement("div");
     div.classList.add("tabuleiro");
+    div.addEventListener("click", clickNoTabuleiro);
     return div;
 }
 
 function criaDisco(cor, posicao) {
     const div = document.createElement("div");
+    if (cor === null) cor = 'nulo';
     div.classList.add("disco");
     div.dataset.cor = cor;
     div.dataset.posicao = posicao;
